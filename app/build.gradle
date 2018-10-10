@@ -1,0 +1,74 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.blobtimm.lsp"
+        minSdkVersion 24
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        kapt {
+            arguments {
+                arg("room.schemaLocation", "$projectDir/schemas".toString())
+            }
+        }
+    }
+    buildTypes {
+        unitTests {
+            minifyEnabled false
+            buildConfigField "boolean", "MOCKED_BUILD", "true"
+        }
+        debug {
+            minifyEnabled false
+            buildConfigField "boolean", "MOCKED_BUILD", "false"
+        }
+        release {
+            minifyEnabled false
+            buildConfigField "boolean", "MOCKED_BUILD", "false"
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.1.0-beta01'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-beta01'
+
+    def arch_version = "2.0.0"
+
+    // ViewModel and LiveData
+    implementation "androidx.lifecycle:lifecycle-extensions:$arch_version"
+    kapt "androidx.lifecycle:lifecycle-compiler:$arch_version"
+    //  Test helpers for LiveData
+    testImplementation "androidx.arch.core:core-testing:$arch_version"
+
+    // room
+    implementation "androidx.room:room-runtime:$arch_version"
+    kapt "androidx.room:room-compiler:$arch_version"
+    // Test helpers
+    testImplementation "androidx.room:room-testing:$arch_version"
+
+    // retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    // gson adapter
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:0.30.2"
+
+    implementation 'com.google.code.gson:gson:2.8.5'
+}

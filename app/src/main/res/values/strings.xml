@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">LSP</string>
+
+    <string name="generic_no_results">No results were found</string>
+
+    <string name="search_title_results">%1$s Results</string>
+    <string name="search_title">Search Github</string>
+    <string name="search_hint">Search Github Repos</string>
+    <string name="search_go">Go</string>
+    <string name="search_no_results">No results</string>
+    <string name="no_internet_error">You appear to be offline</string>
+</resources>
