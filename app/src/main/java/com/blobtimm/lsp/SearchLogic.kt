@@ -11,12 +11,14 @@ class SearchLogic(private val listener: Listener, private val githubRepo: Github
                         showEmptyState = list.isEmpty(),
                         results = list.map { SearchPresenterViewModel.Result(
                                 title = it.name,
-                                avatar = it.avatar
+                                avatar = it.avatar,
+                                openIssues = getString(R.string.open_issues_count, it.openIssuesCount),
+                                description = it.description
                         ) }
                 )
 
                 listener.present(vm)
-
+                listener.dismissKeyboard()
             }
 
             override fun onError(message: String) {
@@ -33,10 +35,9 @@ class SearchLogic(private val listener: Listener, private val githubRepo: Github
 
     interface Listener {
         fun present(vm: SearchPresenterViewModel)
-
         fun loadingStatus(status: LoadingStatus)
-
         fun showGenericDialog(info: GenericDialog)
+        fun dismissKeyboard()
     }
 
     fun search(query: String) {

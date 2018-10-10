@@ -14,7 +14,7 @@ interface RepositoryDao {
     @Delete
     fun delete(user: RepositoryEntity)
 
-    @Query("SELECT * FROM repo WHERE name LIKE :search OR full_name LIKE :search OR description LIKE :search")
+    @Query("SELECT * FROM repo WHERE name LIKE :search OR full_name LIKE :search OR description LIKE :search OR query LIKE :search")
     fun search(search: String): List<RepositoryEntity>
 
 }

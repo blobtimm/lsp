@@ -7,6 +7,8 @@ data class SearchPresenterViewModel(
 ) {
     data class Result(
             val title: String,
-            val avatar: String
+            val avatar: String,
+            val description:String,
+            val openIssues: String
     )
 }

@@ -9,4 +9,5 @@
     <string name="search_go">Go</string>
     <string name="search_no_results">No results</string>
     <string name="no_internet_error">You appear to be offline</string>
+    <string name="open_issues_count">Open Issues: %1$s</string>
 </resources>

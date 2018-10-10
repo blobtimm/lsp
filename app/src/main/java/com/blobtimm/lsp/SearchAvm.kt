@@ -17,6 +17,7 @@ class SearchAvm(application: Application): AndroidViewModel(application), AvmLif
     private val presentMLD = MutableLiveData<SearchPresenterViewModel>()
     private val loadingMLD = MutableLiveData<LoadingStatus>()
     private val dialogMLD = MutableLiveData<GenericDialog>()
+    private val dismissKeyboardMLD = MutableLiveData<Unit>()
 
     init {
 
@@ -40,6 +41,10 @@ class SearchAvm(application: Application): AndroidViewModel(application), AvmLif
             override fun showGenericDialog(info: GenericDialog) {
                 dialogMLD.postValue(info)
             }
+
+            override fun dismissKeyboard() {
+                dismissKeyboardMLD.postValue(Unit)
+            }
         }
         logic = SearchLogic(listener, githubRepo)
     }
@@ -48,6 +53,7 @@ class SearchAvm(application: Application): AndroidViewModel(application), AvmLif
     fun present(): LiveData<SearchPresenterViewModel> = presentMLD
     fun showDialog(): LiveData<GenericDialog> = dialogMLD
     fun loadingStatus(): LiveData<LoadingStatus> = loadingMLD
+    fun dismissKeyboard(): LiveData<Unit> = dismissKeyboardMLD
 
     /*** ACTIONABLES ***/
     fun setup(search: SearchAvmData?) {

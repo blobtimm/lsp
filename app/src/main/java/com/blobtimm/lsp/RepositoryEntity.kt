@@ -11,6 +11,8 @@ data class RepositoryEntity (
 
     val name: String,
 
+    val query: String,
+
     @ColumnInfo(name = "full_name")
     val fullName: String,
 

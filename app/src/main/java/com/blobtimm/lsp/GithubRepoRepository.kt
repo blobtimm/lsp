@@ -1,8 +1,7 @@
 package com.blobtimm.lsp
 
-import retrofit2.Call
-import retrofit2.Callback
 import retrofit2.Response
+import javax.net.ssl.SSLProtocolException
 
 class GithubRepoRepository(private val dao: RepositoryDao, private val api: RetrofitApi.GitHubClient) {
 
@@ -22,17 +21,22 @@ class GithubRepoRepository(private val dao: RepositoryDao, private val api: Retr
         listeners.remove(l)
     }
 
-    fun search(query: String){
+    fun search(query: String) {
 
         listeners.forEach { it.isLoading(true) }
 
-        val response = api.searchRepositories(query).execute()
+        var response: Response<RepositoryResponse>? = null
 
-        if (response.isSuccessful) {
+        try {
+            response = api.searchRepositories(query).execute()
+        } catch (e: SSLProtocolException) { }
+
+        if (response != null && response.isSuccessful) {
             val entities = mutableListOf<RepositoryEntity>()
 
-            response?.body()?.items?.forEach {
+            response.body()?.items?.forEach {
                 val e = RepositoryEntity(
+                        query = query,
                         id = it.id ?: 0,
                         name = it.name ?: "",
                         fullName = it.fullName ?: "",
@@ -47,7 +51,7 @@ class GithubRepoRepository(private val dao: RepositoryDao, private val api: Retr
 
             dao.insertAll(entities)
 
-            val results = dao.search("%$query%")
+            val results = dao.search(query)
             listeners.forEach { it.isLoading(false) }
             if (results.isEmpty()) {
                 listeners.forEach { it.onResult(listOf()) }
@@ -56,7 +60,7 @@ class GithubRepoRepository(private val dao: RepositoryDao, private val api: Retr
             }
         } else {
 
-            if (response.message() != null) {
+            if (response?.message() != null) {
                 listeners.forEach { it.onError(response.message()) }
             } else {
                 val results = dao.search(query)
