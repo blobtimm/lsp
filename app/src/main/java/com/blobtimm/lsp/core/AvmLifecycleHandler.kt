@@ -1,4 +1,4 @@
-package com.blobtimm.lsp
+package com.blobtimm.lsp.core
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

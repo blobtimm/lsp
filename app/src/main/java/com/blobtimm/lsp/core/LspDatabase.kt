@@ -1,9 +1,7 @@
-package com.blobtimm.lsp
+package com.blobtimm.lsp.core
 
-import android.content.Context
 import androidx.room.RoomDatabase
 import androidx.room.Database
-import androidx.room.Room
 
 
 @Database(entities = arrayOf(RepositoryEntity::class), version = 1)

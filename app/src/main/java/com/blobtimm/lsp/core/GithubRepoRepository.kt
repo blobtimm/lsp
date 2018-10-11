@@ -1,4 +1,4 @@
-package com.blobtimm.lsp
+package com.blobtimm.lsp.core
 
 import retrofit2.Response
 import javax.net.ssl.SSLProtocolException

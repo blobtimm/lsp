@@ -1,4 +1,11 @@
-package com.blobtimm.lsp
+package com.blobtimm.lsp.search.logic
+
+import com.blobtimm.lsp.*
+import com.blobtimm.lsp.core.GithubRepoRepository
+import com.blobtimm.lsp.core.RepositoryEntity
+import com.blobtimm.lsp.core.getString
+import com.blobtimm.lsp.search.presenter.SearchPresenterViewModel
+import com.blobtimm.lsp.search.system.SearchAvmData
 
 class SearchLogic(private val listener: Listener, private val githubRepo: GithubRepoRepository) {
 
@@ -9,12 +16,14 @@ class SearchLogic(private val listener: Listener, private val githubRepo: Github
                 val vm = SearchPresenterViewModel(
                         pageTitle = getString(R.string.search_title_results, list.size),
                         showEmptyState = list.isEmpty(),
-                        results = list.map { SearchPresenterViewModel.Result(
-                                title = it.name,
-                                avatar = it.avatar,
-                                openIssues = getString(R.string.open_issues_count, it.openIssuesCount),
-                                description = it.description
-                        ) }
+                        results = list.map {
+                            SearchPresenterViewModel.Result(
+                                    title = it.name,
+                                    avatar = it.avatar,
+                                    openIssues = getString(R.string.open_issues_count, it.openIssuesCount),
+                                    description = it.description
+                            )
+                        }
                 )
 
                 listener.present(vm)

@@ -1,7 +1,8 @@
-package com.blobtimm.lsp
+package com.blobtimm.lsp.core
 
 import android.content.Context
 import androidx.annotation.StringRes
+import com.blobtimm.lsp.BuildConfig
 
 fun getString(@StringRes resId: Int): String {
 

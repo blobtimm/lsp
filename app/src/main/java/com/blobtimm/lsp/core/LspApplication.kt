@@ -1,8 +1,7 @@
-package com.blobtimm.lsp
+package com.blobtimm.lsp.core
 
 import android.app.Application
 import android.content.Context
-import androidx.room.Room
 import com.google.gson.Gson
 
 

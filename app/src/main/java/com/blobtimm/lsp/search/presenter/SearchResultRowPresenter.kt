@@ -1,8 +1,9 @@
-package com.blobtimm.lsp
+package com.blobtimm.lsp.search.presenter
 
 import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.blobtimm.lsp.R
 
 class SearchResultRowPresenter {
 

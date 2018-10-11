@@ -1,4 +1,4 @@
-package com.blobtimm.lsp
+package com.blobtimm.lsp.search.presenter
 
 data class SearchPresenterViewModel(
         val pageTitle: String,

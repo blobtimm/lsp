@@ -1,13 +1,20 @@
-package com.blobtimm.lsp
+package com.blobtimm.lsp.search.system
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.room.Room
+import com.blobtimm.lsp.core.AvmLifecycle
+import com.blobtimm.lsp.core.GithubRepoRepository
+import com.blobtimm.lsp.core.LspDatabase
+import com.blobtimm.lsp.core.RetrofitApi
+import com.blobtimm.lsp.search.logic.GenericDialog
+import com.blobtimm.lsp.search.logic.LoadingStatus
+import com.blobtimm.lsp.search.logic.SearchLogic
+import com.blobtimm.lsp.search.presenter.SearchPresenterViewModel
 import kotlinx.coroutines.experimental.Dispatchers
 import kotlinx.coroutines.experimental.GlobalScope
-import kotlinx.coroutines.experimental.async
 import kotlinx.coroutines.experimental.launch
 
 class SearchAvm(application: Application): AndroidViewModel(application), AvmLifecycle<SearchAvmData> {
@@ -65,6 +72,7 @@ class SearchAvm(application: Application): AndroidViewModel(application), AvmLif
         GlobalScope.launch(Dispatchers.IO) {
             logic.search(query)
         }
+        lifecycle = SearchAvmData(query)
     }
 
     /*** LIFECYCLE ***/

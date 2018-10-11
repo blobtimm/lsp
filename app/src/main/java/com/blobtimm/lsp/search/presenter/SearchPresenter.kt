@@ -1,10 +1,12 @@
-package com.blobtimm.lsp
+package com.blobtimm.lsp.search.presenter
 
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.blobtimm.lsp.R
+import com.blobtimm.lsp.search.logic.SearchLogic
 
 class SearchPresenter {
 

@@ -1,14 +1,11 @@
-package com.blobtimm.lsp
+package com.blobtimm.lsp.core
 
-import com.google.gson.annotations.SerializedName
 import retrofit2.Call
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.Retrofit
 import retrofit2.http.GET
-import retrofit2.http.Path
 import retrofit2.http.Query
 import okhttp3.OkHttpClient
-import retrofit2.Callback
 
 class RetrofitApi {
 

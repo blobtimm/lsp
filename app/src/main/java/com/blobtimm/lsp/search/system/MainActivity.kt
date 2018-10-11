@@ -1,4 +1,4 @@
-package com.blobtimm.lsp
+package com.blobtimm.lsp.search.system
 
 import android.content.Context
 import android.view.View
@@ -6,13 +6,11 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import java.lang.reflect.Type
 import android.content.DialogInterface
-import android.content.DialogInterface.BUTTON_NEUTRAL
 import androidx.appcompat.app.AlertDialog
-import android.content.Context.INPUT_METHOD_SERVICE
 import android.view.inputmethod.InputMethodManager
-import androidx.core.content.ContextCompat.getSystemService
-
-
+import com.blobtimm.lsp.R
+import com.blobtimm.lsp.core.AvmLifecycleHandler
+import com.blobtimm.lsp.search.presenter.SearchPresenter
 
 
 class MainActivity : AvmLifecycleHandler<SearchAvmData, SearchAvm>() {
@@ -67,8 +65,11 @@ class MainActivity : AvmLifecycleHandler<SearchAvmData, SearchAvm>() {
     }
 
     fun dismissKeyboard() {
-        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0)
+        val windowToken = getCurrentFocus()
+        if (windowToken != null) {
+            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(windowToken.windowToken, 0)
+        }
     }
 
     val presenterCallbacks = object : SearchPresenter.Listener {

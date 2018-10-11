@@ -1,9 +1,10 @@
-package com.blobtimm.lsp
+package com.blobtimm.lsp.search.presenter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.blobtimm.lsp.R
 
 class SearchRecyclerViewAdapter(
         rvm: List<SearchPresenterViewModel.Result>,

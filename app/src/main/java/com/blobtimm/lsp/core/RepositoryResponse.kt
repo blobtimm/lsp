@@ -1,4 +1,4 @@
-package com.blobtimm.lsp
+package com.blobtimm.lsp.core
 
 import com.google.gson.annotations.SerializedName
 
